@@ -35,13 +35,13 @@ GOOGLE_APPLICATION_CREDENTIALS = os.path.join(BASE_DIR, 'path/to/google-service-
 AUTHENTICATION_BACKENDS = ['strawberry_django_firebase_auth.authentication.FirebaseAuthentication']
 ```
 
-5. Add authentication middleware to `GRAPHENE`
+<!-- 5. Add authentication middleware to `GRAPHENE`
 
 ```python
 GRAPHENE = {
-    'MIDDLEWARE': ['strawberry_django_firebase_auth.middleware.FirebaseAuthGrapheneMiddleware',],
+    'MIDDLEWARE': ['strawberry_django_firebase_auth.middleware.FirebaseAuthStrawberryMiddleware',],
 }
-```
+``` -->
 
 6. Add `strawberry_django_firebase_auth` to `INSTALLED_APPS`:
 
