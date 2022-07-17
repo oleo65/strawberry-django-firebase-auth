@@ -1,0 +1,41 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [master]
+    tags:
+      - "*"
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pipenv
+        uses: dschep/install-pipenv-action@v1
+      - name: Install dependencies
+        run: |
+          pipenv install --dev
+      # - name: Test with Unittest
+      #   run: |
+      #     pipenv run python manage.py test
+      - name: Build wheel
+        run: |
+          pipenv run pip wheel --no-deps -w ./dist .
+      - name: Archive wheel artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-wheels
+          path: |
+            dist/*.whl
