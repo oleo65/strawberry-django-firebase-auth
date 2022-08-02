@@ -17,7 +17,7 @@ setup(
     keywords='strawberry django firebase auth',
     url='https://github.com/oleo65/strawberry-django-firebase-auth',
     packages=['strawberry_django_firebase_auth'],
-    install_requires=['django', 'firebase-admin'],
+    install_requires=['django', 'firebase-admin', 'strawberry-graphql'],
     long_description=README,
     classifiers=[
         'Development Status :: 3 - Alpha',

@@ -10,6 +10,7 @@ name = "pypi"
 firebase-admin = "*"
 django = "*"
 django-environ = "*"
+strawberry-graphql = ">=0.122.0"
 
 
 [dev-packages]
