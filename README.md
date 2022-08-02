@@ -69,6 +69,14 @@ class User(AbstractUser, FirebaseAuthMixin):
 ./manage.py migrate
 ```
 
+9. Add the Strawberry Schema extension
+
+```python
+from strawberry_django_firebase_auth.extension import FirebaseAuthStrawberryExtension
+
+schema = strawberry.Schema(query=Query, mutation=Mutation, extensions=[FirebaseAuthStrawberryExtension])
+```
+
 ## Additional configuration
 
 All settings will be bundled in the `STRAWBERRY_FIREBASE_AUTH` dictionary.
