@@ -1,3 +1,35 @@
 [build-system]
 requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
+build-backend = "setuptools.build_meta"
+
+[project]
+name = 'strawberry_django_firebase_auth'
+version = '1.0.0'
+authors = [{ name = 'Ole Odendahl', email = 'oleodendahl@gmail.com' }]
+description = "Authentication provider for strawberry-django and Google Firebase's Authentication service."
+license = { text = 'License :: OSI Approved :: MIT License' }
+keywords = ['strawberry', 'django', 'firebase', 'auth', 'jwt', 'graphql']
+dependencies = ['django', 'firebase-admin', 'strawberry-graphql']
+readme = 'README.md'
+requires-python = ">=3.10"
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Environment :: Web Environment',
+    'Framework :: Django',
+    'Framework :: Django :: 4.0',
+    'Intended Audience :: Developers',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'License :: OSI Approved :: MIT License',
+]
+
+[project.urls]
+repository = 'https://github.com/oleo65/strawberry-django-firebase-auth'
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["strawberry_django_firebase_auth*"]
+exclude = ["tests*"]
