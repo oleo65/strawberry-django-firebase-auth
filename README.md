@@ -1,3 +1,6 @@
+[![Build and Test](https://github.com/oleo65/strawberry-django-firebase-auth/actions/workflows/pythonpackage.yml/badge.svg?branch=master)](https://github.com/oleo65/strawberry-django-firebase-auth/actions/workflows/pythonpackage.yml)
+[![Release](https://github.com/oleo65/strawberry-django-firebase-auth/actions/workflows/pythonpackage.yml/badge.svg?branch=master&event=release)](https://github.com/oleo65/strawberry-django-firebase-auth/actions/workflows/pythonpackage.yml)
+
 # Strawberry Django Firebase Auth
 
 Authentication provider for strawberry-django and Firebase's Authentication service.
