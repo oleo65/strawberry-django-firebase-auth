@@ -10,15 +10,16 @@ name = "pypi"
 firebase-admin = "*"
 django = "*"
 django-environ = "*"
-strawberry-graphql = ">=0.122.0"
+strawberry-graphql = ">=0.170.0"
 
 
 [dev-packages]
 
 pylint = "*"
 pylint-django = "*"
+pytest = "*"
 
 
 [requires]
 
-python_version = "3.10"
+python_version = "3.11"
