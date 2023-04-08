@@ -14,7 +14,7 @@ This app is used with [Firebase Authentication](https://firebase.google.com/docs
 
 ## Compatibility
 
-This code has only been tested with Python `3.10` and Django `4.0.6`.
+This code has only been tested with Python `3.11` and Django `4.2.0`.
 
 ## Installing
 
