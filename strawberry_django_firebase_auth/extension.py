@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate
 from .settings import firebase_auth_settings
 from strawberry.utils.await_maybe import AwaitableOrValue
-from strawberry.extensions import Extension
+from strawberry.extensions import SchemaExtension
 from django.http.request import HttpRequest
 
 
-class FirebaseAuthStrawberryExtension(Extension):
+class FirebaseAuthStrawberryExtension(SchemaExtension):
     """Extension to be used with strawberry to authenticate the firebase user via token."""
 
     def on_request_start(self) -> AwaitableOrValue[None]:

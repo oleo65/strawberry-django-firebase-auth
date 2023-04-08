@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = 'strawberry_django_firebase_auth'
-version = '1.0.0'
+version = '1.0.1'
 authors = [{ name = 'Ole Odendahl', email = 'oleodendahl@gmail.com' }]
 description = "Authentication provider for strawberry-django and Google Firebase's Authentication service."
 license = { text = 'License :: OSI Approved :: MIT License' }
@@ -17,6 +17,8 @@ classifiers = [
     'Environment :: Web Environment',
     'Framework :: Django',
     'Framework :: Django :: 4.0',
+    'Framework :: Django :: 4.1',
+    'Framework :: Django :: 4.2',
     'Intended Audience :: Developers',
     'Operating System :: OS Independent',
     'Programming Language :: Python',
