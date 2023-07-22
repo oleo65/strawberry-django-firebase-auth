@@ -1,4 +1,5 @@
 import logging
+from typing import Any
 
 from django.contrib.auth import get_user_model
 from firebase_admin import auth
@@ -12,7 +13,7 @@ User = get_user_model()
 
 class FirebaseAuthentication:
 
-    def _get_auth_token(self, request):
+    def _get_auth_token(self, request) -> dict[str, Any] | None:
         encoded_token = request.META.get(firebase_auth_settings.AUTH_HEADER_NAME)
         decoded_token = None
 
@@ -26,7 +27,7 @@ class FirebaseAuthentication:
             logging.exception(err)
         return decoded_token
 
-    def _get_user_from_firebase_user(self, firebase_user):
+    def _get_user_from_firebase_user(self, firebase_user: dict[str, Any]):
         firebase_uid = firebase_user.get('uid')
         user = None
 
@@ -41,7 +42,7 @@ class FirebaseAuthentication:
             user = self._register_unregistered_user(firebase_user)
         return user
 
-    def _register_unregistered_user(self, firebase_user):
+    def _register_unregistered_user(self, firebase_user: dict[str, Any]):
         user = None
 
         user = self._match_user_by_email(firebase_user)
