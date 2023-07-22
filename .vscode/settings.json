@@ -6,4 +6,6 @@
     "main.settings",
   ],
   "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "yapf",
+  "python.analysis.typeCheckingMode": "basic",
 }

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = 'strawberry_django_firebase_auth'
-version = '1.0.2'
+version = '1.1.0'
 authors = [{ name = 'Ole Odendahl', email = 'oleodendahl@gmail.com' }]
 description = "Authentication provider for strawberry-django and Google Firebase's Authentication service."
 license = { text = 'License :: OSI Approved :: MIT License' }
@@ -36,3 +36,20 @@ repository = 'https://github.com/oleo65/strawberry-django-firebase-auth'
 where = ["."]
 include = ["strawberry_django_firebase_auth*"]
 exclude = ["tests*"]
+
+[tool.pylint]
+[tool.pylint.master]
+disable = [
+    'C0114',
+    'C0115',
+    'missing-function-docstring',
+    'no-else-return',
+    'too-few-public-methods',
+    'too-many-ancestors',
+    'too-many-instance-attributes',
+    'too-many-arguments',
+    'too-many-return-statements',
+]
+
+[tool.pylint.format]
+max-line-length = 140
