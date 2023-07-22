@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import get_user_model
 from firebase_admin import auth
 
@@ -18,8 +20,10 @@ class FirebaseAuthentication:
             decoded_token = auth.verify_id_token(encoded_token, firebase_app)
         except ValueError:
             pass
-        except (auth.InvalidIdTokenError, auth.ExpiredIdTokenError, auth.RevokedIdTokenError, auth.CertificateFetchError) as e:
-            print(e.default_message)
+        except (auth.InvalidIdTokenError, auth.ExpiredIdTokenError, auth.RevokedIdTokenError) as err:
+            logging.error(err.default_message)
+        except auth.CertificateFetchError as err:
+            logging.exception(err)
         return decoded_token
 
     def _get_user_from_firebase_user(self, firebase_user):
@@ -57,7 +61,7 @@ class FirebaseAuthentication:
 
         try:
             user = User.objects.get(email=firebase_user['email'])
-            
+
             user = self._set_firebase_uid(user, firebase_user)
         except User.DoesNotExist:
             pass
