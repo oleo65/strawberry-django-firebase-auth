@@ -1,5 +1,4 @@
-from asgiref.sync import sync_to_async
-from django.contrib.auth import authenticate
+from django.contrib.auth import aauthenticate
 from django.http.request import HttpRequest
 from strawberry.extensions import SchemaExtension
 from strawberry.utils.await_maybe import AwaitableOrValue
@@ -18,11 +17,13 @@ class FirebaseAuthStrawberryExtension(SchemaExtension):
             user = await self._authenticate_request(request)
 
             if user is not None:
+                # FIXME: Hack for async resolve due to possible Django bug not relaying the get_user to the proper backend.
+                request._acached_user = user    # pylint: disable=protected-access
                 request.user = user
 
     async def _authenticate_request(self, request):
-        return await sync_to_async(authenticate)(request=request)
-        # return authenticate(request=request)
+        return await aauthenticate(request)
+        # return await sync_to_async(authenticate)(request=request)
 
     def _get_token(self, request: HttpRequest):
         auth_data = request.META.get(firebase_auth_settings.AUTH_HEADER_NAME, '').split()
