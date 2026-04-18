@@ -14,17 +14,29 @@ User = get_user_model()
 
 class FirebaseAuthentication:
 
+    def _extract_bearer_or_raw_token(self, header_value: str | None) -> str | None:
+        if not header_value:
+            return None
+        parts = header_value.split()
+        if len(parts) == 1:
+            return parts[0]
+        if len(parts) == 2 and parts[0].lower() == "bearer":
+            return parts[1]
+        return None
+    
     def _get_auth_token(self, request) -> dict[str, Any] | None:
-        encoded_token = request.META.get(
-            firebase_auth_settings.AUTH_HEADER_NAME)
+        raw_header = request.META.get(firebase_auth_settings.AUTH_HEADER_NAME)
+        encoded_token = self._extract_bearer_or_raw_token(raw_header)
         decoded_token = None
+
+        if not encoded_token:
+            return None
 
         try:
             decoded_token = auth.verify_id_token(encoded_token, firebase_app)
         except ValueError:
             pass
-        except (auth.InvalidIdTokenError, auth.ExpiredIdTokenError,
-                auth.RevokedIdTokenError) as err:
+        except (auth.InvalidIdTokenError, auth.ExpiredIdTokenError, auth.RevokedIdTokenError) as err:
             logging.error(err.default_message)
         except auth.CertificateFetchError as err:
             logging.exception(err)

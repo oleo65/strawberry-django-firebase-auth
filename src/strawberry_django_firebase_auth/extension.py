@@ -7,30 +7,38 @@ from .settings import firebase_auth_settings
 
 
 class FirebaseAuthStrawberryExtension(SchemaExtension):
-    """Extension to be used with strawberry to authenticate the firebase user via token."""
+    """Authenticate Firebase user and inject request.user into GraphQL context."""
 
-    async def on_request_start(self) -> AwaitableOrValue[None]:
+    async def on_operation(self) -> AwaitableOrValue[None]:
         request: HttpRequest = self.execution_context.context.request
         token = self._get_token(request)
 
-        if token is not None:
-            user = await self._authenticate_request(request)
+        if not token:
+            return
 
-            if user is not None:
-                # FIXME: Hack for async resolve due to possible Django bug not relaying the get_user to the proper backend.
-                request._acached_user = user    # pylint: disable=protected-access
-                request.user = user
+        user = await self._authenticate_request(request, token)
 
-    async def _authenticate_request(self, request):
-        return await aauthenticate(request)
-        # return await sync_to_async(authenticate)(request=request)
+        if user is not None:
+            # Keep both attributes for async Django request handling.
+            request._acached_user = user  # pylint: disable=protected-access
+            request.user = user
 
-    def _get_token(self, request: HttpRequest):
-        auth_data = request.META.get(firebase_auth_settings.AUTH_HEADER_NAME, '').split()
+    async def _authenticate_request(self, request: HttpRequest, token: str):
+        # Normalize header to pure JWT so backend verification works.
+        original_header = request.META.get(firebase_auth_settings.AUTH_HEADER_NAME, "")
+        request.META[firebase_auth_settings.AUTH_HEADER_NAME] = token
+        try:
+            return await aauthenticate(request)
+        finally:
+            request.META[firebase_auth_settings.AUTH_HEADER_NAME] = original_header
 
-        if len(auth_data) == 1 and auth_data[0] != '':
+    def _get_token(self, request: HttpRequest) -> str | None:
+        auth_data = request.META.get(firebase_auth_settings.AUTH_HEADER_NAME, "").split()
+
+        if len(auth_data) == 1 and auth_data[0]:
             return auth_data[0]
-        elif len(auth_data) == 2:
+
+        if len(auth_data) == 2 and auth_data[0].lower() == "bearer":
             return auth_data[1]
 
         return None

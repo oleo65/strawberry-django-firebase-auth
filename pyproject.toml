@@ -1,6 +1,6 @@
 [project]
 name = "strawberry-django-firebase-auth"
-version = '1.4.0'
+version = '1.4.1'
 authors = [{ name = 'Ole Odendahl', email = 'oleodendahl@gmail.com' }]
 description = "Authentication provider for strawberry-django and Google Firebase's Authentication service."
 license = { text = 'License :: OSI Approved :: MIT License' }
