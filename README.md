@@ -14,14 +14,14 @@ This app is used with [Firebase Authentication](https://firebase.google.com/docs
 
 ## Compatibility
 
-This code has only been tested with Python `3.11` and Django `4.2.0`.
+This code supports Python `>=3.11` and Django `>=5.2`.
 
 ## Installing
 
 1. Install the app:
 
 ```sh
-pipenv install strawberry-django-firebase-auth
+uv pip install strawberry-django-firebase-auth
 ```
 
 2. Download the JSON file from your [Firebase console](https://console.firebase.google.com/) with your account's credentials.
@@ -137,7 +137,7 @@ How you do this depends on your client and is outside the scope of this document
 1. Install the dependencies:
 
 ```sh
-pipenv install --dev
+uv sync
 ```
 
 2. Download the JSON file from your [Firebase console](https://console.firebase.google.com/) with your account's credentials.
@@ -145,15 +145,15 @@ pipenv install --dev
 3. Create an `.env` file using `.env.example` as a template. Make sure
 to specify the path to the file in the previous step.
 
-4. Enter the virtual environment:
+4. Activate the virtual environment:
 
 ```sh
-./manage.py shell
+source .venv/bin/activate
 ```
 
 ### Other commands
 
 ```sh
 # Run the tests
-./manage.py test
+uv run ./manage.py test
 ```
