@@ -1,15 +1,10 @@
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = 'strawberry_django_firebase_auth'
+name = "strawberry-django-firebase-auth"
 version = '1.3.0'
 authors = [{ name = 'Ole Odendahl', email = 'oleodendahl@gmail.com' }]
 description = "Authentication provider for strawberry-django and Google Firebase's Authentication service."
 license = { text = 'License :: OSI Approved :: MIT License' }
 keywords = ['strawberry', 'django', 'firebase', 'auth', 'jwt', 'graphql']
-dependencies = ['django >= 5.2', 'firebase-admin', 'strawberry-graphql']
 readme = 'README.md'
 requires-python = ">=3.11"
 classifiers = [
@@ -26,15 +21,14 @@ classifiers = [
     'Topic :: Software Development :: Libraries :: Python Modules',
     'License :: OSI Approved :: MIT License',
 ]
+dependencies = ['django >= 5.2', 'firebase-admin', 'strawberry-graphql']
 
 [project.urls]
 repository = 'https://github.com/oleo65/strawberry-django-firebase-auth'
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["strawberry_django_firebase_auth*"]
-exclude = ["tests*"]
-
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
 [tool.pylint]
 [tool.pylint.master]
 disable = [
