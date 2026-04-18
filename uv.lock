@@ -955,18 +955,18 @@ wheels = [
 
 [[package]]
 name = "strawberry-django-firebase-auth"
-version = "1.4.1"
+version = "1.4.2"
 source = { editable = "." }
 dependencies = [
     { name = "django", version = "5.2.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "django", version = "6.0.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "django-environ" },
     { name = "firebase-admin" },
     { name = "strawberry-graphql" },
 ]
 
 [package.dev-dependencies]
 dev = [
+    { name = "django-environ" },
     { name = "pylint" },
     { name = "pylint-django" },
     { name = "pytest" },
@@ -975,13 +975,13 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=5.2" },
-    { name = "django-environ" },
     { name = "firebase-admin" },
     { name = "strawberry-graphql" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "django-environ" },
     { name = "pylint", specifier = ">=4.0.5" },
     { name = "pylint-django", specifier = ">=2.7.0" },
     { name = "pytest", specifier = ">=9.0.3" },

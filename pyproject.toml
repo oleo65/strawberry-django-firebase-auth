@@ -1,6 +1,6 @@
 [project]
 name = "strawberry-django-firebase-auth"
-version = '1.4.1'
+version = '1.4.2'
 authors = [{ name = 'Ole Odendahl', email = 'oleodendahl@gmail.com' }]
 description = "Authentication provider for strawberry-django and Google Firebase's Authentication service."
 license = { text = 'License :: OSI Approved :: MIT License' }
@@ -22,7 +22,7 @@ classifiers = [
     'Programming Language :: Python :: 3.14',
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
-dependencies = ['django >= 5.2', 'django-environ', 'firebase-admin', 'strawberry-graphql']
+dependencies = ['django >= 5.2', 'firebase-admin', 'strawberry-graphql']
 
 [project.urls]
 repository = 'https://github.com/oleo65/strawberry-django-firebase-auth'
@@ -52,4 +52,5 @@ dev = [
     "pylint>=4.0.5",
     "pylint-django>=2.7.0",
     "pytest>=9.0.3",
+    "django-environ",
 ]
